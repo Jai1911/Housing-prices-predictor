@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 
-# Load the data
+
 data = pd.read_csv("train.csv")
 
 features = ["LotArea", "BedroomAbvGr", "FullBath", "HalfBath", "OverallCond", "GarageCars", "YearBuilt"]
@@ -17,11 +17,11 @@ data[features] = imputer.fit_transform(data[features])
 # Feature creation
 data["TotalBathrooms"] = data["FullBath"] + data["HalfBath"]
 
-# Calculate the age of the house
+
 data['YearBuilt'] = 2024 - data['YearBuilt']
 
 
-# Split data into training and testing sets
+
 X_train, X_test, y_train, y_test = train_test_split(
     data[features], data[target], test_size=0.2, random_state=42
 )
@@ -30,10 +30,10 @@ X_train, X_test, y_train, y_test = train_test_split(
 model = RandomForestRegressor(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 
-# Make predictions on the test set
+
 predictions = model.predict(X_test)
 
-# Evaluate the model performance
+
 rf_mse = mean_squared_error(y_test, predictions)
 rf_r2 = r2_score(y_test, predictions)
 rf_mae = mean_absolute_error(y_test, predictions)
@@ -50,12 +50,12 @@ overall_condition = 7
 year_built = 2002
 
 
-# Create a DataFrame from user input
+
 new_data = {"LotArea": [lot_area], "BedroomAbvGr": [bedrooms], "FullBath": [full_baths], "HalfBath": [half_baths], "OverallCond": [overall_condition], "GarageCars": [garage_cars], "YearBuilt": [year_built]}
 
 new_data_df = pd.DataFrame(new_data)
 
-# Make predictions on new data
+
 def predict_rf(new_data_df):
     predicted_price = model.predict(new_data_df)[0]
 
@@ -68,7 +68,7 @@ def predict_rf(new_data_df):
 
     print("Price after discount : ", "$", final_price)
 
-    #return predicted_price
+    
     return final_price
 
 
@@ -85,7 +85,7 @@ def calculate_discount(predicted_price):
   return discount
 
 
-#predict_rf(new_data_df)
+predict_rf(new_data_df)
 
 
 
