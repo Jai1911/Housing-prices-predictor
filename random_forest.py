@@ -85,7 +85,7 @@ def calculate_discount(predicted_price):
   return discount
 
 
-predict_rf(new_data_df)
+#predict_rf(new_data_df)
 
 
 
