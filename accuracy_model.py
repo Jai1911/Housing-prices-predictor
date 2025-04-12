@@ -1,9 +1,7 @@
 import pandas as pd
-
-# Import functions from model files (replace with actual file paths and function names)
-from random_forest import predict_rf, rf_r2, rf_mae  # Random Forest prediction function
-from svr_model import predict_svr, svr_r2, svr_mae  # SVR prediction function
-from xgboost_model import predict_xgb, xgb_r2, xgb_mae  # XGBoost prediction function
+from random_forest import predict_rf, rf_r2, rf_mae  
+from svr_model import predict_svr, svr_r2, svr_mae  
+from xgboost_model import predict_xgb, xgb_r2, xgb_mae  
 
 def get_user_data():
 
@@ -29,21 +27,21 @@ def get_user_data():
 def create_data_from_user_input():
 
   user_data = get_user_data()
-  return pd.DataFrame([user_data])  # Create a DataFrame with a single row
+  return pd.DataFrame([user_data]) 
 
-# Get user input for the new house
+
 new_data_df = create_data_from_user_input()
 
-# Split the user-provided data into features (X_new) for prediction
+
 features = ["LotArea", "BedroomAbvGr", "FullBath", "HalfBath", "OverallCond", "GarageCars", "YearBuilt"]
 X_new = new_data_df[features]
 
-# Make predictions using each model function
+
 rf_predicted_price = predict_rf(X_new)
 svr_predicted_price = predict_svr(X_new)
 xgb_predicted_price = predict_xgb(X_new)
 
-# Print the predicted prices for the user-provided house
+
 print("Final rices for the new house, after discount:")
 print(f"Random Forest: ${rf_predicted_price:.2f}")
 print(f"SVR: ${svr_predicted_price:.2f}")
